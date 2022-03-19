@@ -1,0 +1,2 @@
+# resultic
+https://resultic.info
