@@ -19,6 +19,7 @@ import {
   XIcon,
 } from "@heroicons/react/outline";
 import { ChevronDownIcon } from "@heroicons/react/solid";
+import { signIn } from "next-auth/react";
 
 const solutions = [
   {
@@ -322,7 +323,7 @@ const Home: NextPage = () => {
             </Popover.Group>
             <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
               <a
-                href="#"
+                onClick={() => signIn()}
                 className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
               >
                 Sign in
@@ -415,7 +416,7 @@ const Home: NextPage = () => {
                     </a>
                     <p className="mt-6 text-center text-base font-medium text-gray-500">
                       Existing customer?
-                      <a href="#" className="text-gray-900">
+                      <a onClick={() => signIn()} className="text-gray-900">
                         Sign in
                       </a>
                     </p>
