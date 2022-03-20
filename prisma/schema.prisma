@@ -6,6 +6,13 @@ generator client {
   previewFeatures = ["referentialIntegrity"]
 }
 
+generator pothos {
+  provider        = "prisma-pothos-types"
+  previewFeatures = ["referentialIntegrity"]
+  // clientOutput = "@prisma/client"
+  // output = "./pothos-types.ts"
+}
+
 datasource db {
   provider             = "mysql"
   url                  = env("PLANETSCALE_PRISMA_DATABASE_URL")
