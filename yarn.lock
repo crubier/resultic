@@ -868,6 +868,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@pothos/plugin-errors@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "@pothos/plugin-errors@npm:3.1.1"
+  peerDependencies:
+    graphql: ">=15.1.0"
+  checksum: db1d8b70e3e009e6a4f93f073f7d7fcdbf4670f01f56f692342f86df1c6bbc8b5d7ee41845b15c65a0c0ab76eab8dff367f0ad3a3dfc494796c20b3fbdba603e
+  languageName: node
+  linkType: hard
+
 "@pothos/plugin-prisma@npm:^3.1.1":
   version: 3.1.1
   resolution: "@pothos/plugin-prisma@npm:3.1.1"
@@ -5930,6 +5939,7 @@ __metadata:
     "@heroicons/react": 1.0.6
     "@next-auth/prisma-adapter": 1.0.3
     "@pothos/core": ^3.3.3
+    "@pothos/plugin-errors": ^3.1.1
     "@pothos/plugin-prisma": ^3.1.1
     "@pothos/plugin-relay": ^3.6.0
     "@prisma/client": 3.11.0

@@ -2,6 +2,7 @@ import SchemaBuilder from "@pothos/core";
 import { PrismaClient } from "@prisma/client";
 import PrismaPlugin from "@pothos/plugin-prisma";
 import RelayPlugin from "@pothos/plugin-relay";
+import ErrorsPlugin from "@pothos/plugin-errors";
 import type PrismaTypes from "@pothos/plugin-prisma/generated";
 import { Context } from "./types";
 
@@ -11,9 +12,12 @@ export const builder = new SchemaBuilder<{
   PrismaTypes: PrismaTypes;
   Context: Context;
 }>({
-  plugins: [RelayPlugin, PrismaPlugin],
+  plugins: [ErrorsPlugin, RelayPlugin, PrismaPlugin],
   prisma: {
     client: prisma,
+  },
+  errorOptions: {
+    defaultTypes: [Error],
   },
   relayOptions: {
     // These will become the defaults in the next major version
