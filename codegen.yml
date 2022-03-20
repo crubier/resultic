@@ -1,0 +1,13 @@
+overwrite: true
+errorsOnly: true
+schema: build-schema.js
+# This should be updated to match your client files
+# documents: 
+#   - 'components/**/!(*.d).{ts,tsx}'
+#   - 'lib/**/!(*.d).{ts,tsx}'
+#   - 'pages/**/!(*.d).{ts,tsx}'
+generates:
+  # This will take your schema and print an SDL schema.
+  "./generated/schema.graphql":
+    plugins:
+      - schema-ast

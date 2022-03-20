@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-
+import classNames from "clsx";
 import { Fragment, HTMLProps, SVGProps } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import {
@@ -20,6 +20,11 @@ import {
 } from "@heroicons/react/outline";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import { signIn } from "next-auth/react";
+import { graphql } from "react-relay";
+// import graphql from "babel-plugin-relay/macro";
+import { loadQuery, usePreloadedQuery } from "react-relay/hooks";
+import { RelayEnvironment } from "@/lib/relay-environment";
+import { pagesMeQuery } from "@/generated/relay/pagesMeQuery.graphql";
 
 const solutions = [
   {
@@ -214,11 +219,36 @@ const footerNavigation = {
   ],
 };
 
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
+// Define a query
+const pagesMeQuery = graphql`
+  query pagesMeQuery {
+    me {
+      id
+      email
+      name
+      accounts {
+        edges {
+          node {
+            id
+            provider
+            providerAccountId
+            type
+          }
+        }
+      }
+    }
+  }
+`;
+
+// Immediately load the query as our app starts. For a real app, we'd move this
+// into our routing configuration, preloading data as we transition to new routes.
+const preloadedQuery = loadQuery<pagesMeQuery>(RelayEnvironment, pagesMeQuery, {
+  /* query variables */
+});
 
 const Home: NextPage = () => {
+  const data = usePreloadedQuery<pagesMeQuery>(pagesMeQuery, preloadedQuery);
+  console.log(data);
   return (
     <div className="bg-white">
       <header>
@@ -315,10 +345,10 @@ const Home: NextPage = () => {
                 Partners
               </a>
               <a
-                href="#"
+                href="/graphiql"
                 className="text-base font-medium text-gray-500 hover:text-gray-900"
               >
-                Company
+                GraphiQL
               </a>
             </Popover.Group>
             <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
@@ -401,10 +431,10 @@ const Home: NextPage = () => {
                       Partners
                     </a>
                     <a
-                      href="#"
+                      href="/graphiql"
                       className="text-base font-medium text-gray-900 hover:text-gray-700"
                     >
-                      Company
+                      GraphiQL
                     </a>
                   </div>
                   <div className="mt-6">
@@ -444,7 +474,9 @@ const Home: NextPage = () => {
               </div>
               <div className="relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
                 <h1 className="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-                  <span className="block text-white">Take control of your</span>
+                  <span className="block text-white">
+                    Take control of your {data.me.email}
+                  </span>
                   <span className="block text-indigo-200">
                     customer support
                   </span>
