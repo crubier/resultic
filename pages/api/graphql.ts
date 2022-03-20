@@ -7,7 +7,7 @@ import { execute, parse } from "graphql";
 
 import { schema } from "@/lib/graphql/schema";
 import { Context } from "@/lib/graphql/types";
-import { User } from "next-auth";
+import { DefaultUser, User } from "next-auth";
 
 const maxRetries = 1;
 
@@ -31,7 +31,7 @@ const createContext = async ({
   if (!user) {
     throw new Error("Unauthenticated, no user");
   }
-  if (!user.id) {
+  if (!(user as DefaultUser).id) {
     throw new Error("Unauthenticated, no user id");
   }
   return { session, user: user as User, req };
