@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import Link from "next/link";
 import classNames from "clsx";
 import { Fragment, HTMLProps, SVGProps } from "react";
 import { Popover, Transition } from "@headlessui/react";
@@ -344,12 +345,12 @@ const Home: NextPage = () => {
               >
                 Partners
               </a>
-              <a
+              <Link
                 href="/graphiql"
                 className="text-base font-medium text-gray-500 hover:text-gray-900"
               >
-                GraphiQL
-              </a>
+                <a>GraphiQL</a>
+              </Link>
             </Popover.Group>
             <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
               <a
@@ -430,12 +431,11 @@ const Home: NextPage = () => {
                     >
                       Partners
                     </a>
-                    <a
-                      href="/graphiql"
-                      className="text-base font-medium text-gray-900 hover:text-gray-700"
-                    >
-                      GraphiQL
-                    </a>
+                    <Link href="/graphiql">
+                      <a className="text-base font-medium text-gray-900 hover:text-gray-700">
+                        GraphiQL
+                      </a>
+                    </Link>
                   </div>
                   <div className="mt-6">
                     <a
