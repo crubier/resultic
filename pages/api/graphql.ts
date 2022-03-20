@@ -1,6 +1,4 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
-// import { typeDefs, resolvers, repository } from "@labelflow/db";
-// import { makeExecutableSchema } from "@graphql-tools/schema";
 import { getSession } from "next-auth/react";
 import { execute, parse } from "graphql";
 // import { captureException } from "@sentry/nextjs";
@@ -10,11 +8,6 @@ import { Context } from "@/lib/graphql/types";
 import { DefaultUser, User } from "next-auth";
 
 const maxRetries = 1;
-
-// const schema = makeExecutableSchema({
-//   typeDefs,
-//   resolvers,
-// });
 
 const createContext = async ({
   req,

@@ -223,19 +223,19 @@ const footerNavigation = {
 const pagesMeQuery = graphql`
   query pagesMeQuery {
     me {
-      id
+      # id
       email
-      name
-      accounts {
-        edges {
-          node {
-            id
-            provider
-            providerAccountId
-            type
-          }
-        }
-      }
+      # name
+      # accounts {
+      #   edges {
+      #     node {
+      #       id
+      #       provider
+      #       providerAccountId
+      #       type
+      #     }
+      #   }
+      # }
     }
   }
 `;
